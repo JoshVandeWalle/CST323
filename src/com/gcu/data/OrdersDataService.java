@@ -17,8 +17,6 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import com.gcu.model.Order;
 import com.gcu.service.OrderService;
 import com.gcu.util.exception.DatabaseException;
-import com.mysql.jdbc.Connection;
-
 /**
  * The OrdersDataService handles database CRUD operations for orders
  * @author Josh Van de Walle

@@ -1,0 +1,56 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd       
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+
+   <context:component-scan base-package="com.gcu" />
+   <aop:aspectj-autoproxy/>
+   <mvc:annotation-driven />
+   <context:annotation-config />
+   <mvc:resources mapping="/resources/**" location="/WEB-INF/resources/"/>
+ 
+  	<bean id="viewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"/>
+ 	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/layouts/layouts.xml</value>
+				<value>/WEB-INF/layouts/views.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- MySQL Data Source -->
+	<bean id="dataSource" destroy-method="close"
+		class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName"
+			value="com.mysql.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://cst323activity.cz6nq4gs34ua.us-west-1.rds.amazonaws.com:3306/activity4" />
+		<property name="username" value="admin" />
+		<property name="password" value="cst323gcu" />
+	</bean>
+ 
+	<bean id="ordersService" class="com.gcu.business.OrdersBusinessService" scope="session">
+	<aop:scoped-proxy proxy-target-class="false"/>
+	<property name="service" ref="ordersDataService" />
+ 	</bean>
+ 	
+ 	<bean id="ordersDataService" class="com.gcu.data.OrdersDataService" scope="session">
+	<aop:scoped-proxy proxy-target-class="false"/>
+	<property name="dataSource" ref="dataSource" />
+ 	</bean>
+ 	
+ 	<!-- Definition for logging aspect -->
+   <bean id = "interceptor" class = "com.gcu.util.interceptor.Interceptor"/> 
+ 	
+ </beans>
+ 
+ 

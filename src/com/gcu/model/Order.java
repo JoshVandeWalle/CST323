@@ -1,6 +1,7 @@
 package com.gcu.model;
 
 public class Order {
+	// unique database ID
 	private int id;
 	private String orderNo;
 	private String productName;

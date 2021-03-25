@@ -5,7 +5,7 @@ import java.util.List;
 import com.gcu.model.Order;
 
 /**
- * This interface defines what methods are needed to enfore business logic and rules for orders
+ * This interface defines what methods are needed to enforce business logic and rules for orders
  * @author Josh Van de Walle
  *
  */

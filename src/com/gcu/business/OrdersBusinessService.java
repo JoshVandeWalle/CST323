@@ -11,7 +11,7 @@ import com.gcu.model.Order;
 import com.gcu.service.OrderService;
 
 /**
- * The OrdersBusinessService oversees business rules and logic for orders
+ * The OrdersBusinessService oversees application business rules and logic for orders
  * @author Josh Van de Walle
  *
  */
